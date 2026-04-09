@@ -99,7 +99,7 @@ def load_by_state_dict(state_dict, device):
         model.float()
     return model, _transform(model.visual.input_resolution)
 
-def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_available() else "cpu", jit: bool = False, share_dim = 512, hidden_dim = 128, layer = 7, share_layer = 4, download_root: str = None):
+def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_available() else "cpu", jit: bool = False, download_root: str = None):
     """Load a CLIP model
 
     Parameters
@@ -144,7 +144,7 @@ def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_a
             state_dict = torch.load(opened_file, map_location="cpu")
 
     if not jit:
-        model = build_model(state_dict or model.state_dict(), share_dim, hidden_dim, layer, share_layer).to(device)
+        model = build_model(state_dict or model.state_dict()).to(device)
         if str(device) == "cpu":
             model.float()
         return model, _transform(model.visual.input_resolution)
