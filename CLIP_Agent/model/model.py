@@ -34,7 +34,7 @@ allgather = AllGather.apply
 
 
 
-class icsd(nn.Module):
+class S2P(nn.Module):
     def __init__(self, args, config: dict):
         super().__init__()
         self.args = args
