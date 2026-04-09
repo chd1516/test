@@ -44,7 +44,7 @@ class icsd(nn.Module):
 
 
         # set model backbone
-        self.clip_model, self.preprocess = clip.load(config['clip_model'], device=self.device, jit=False, share_dim=self.args.share_dim, hidden_dim=self.args.hidden_dim, layer=self.args.layer, share_layer=self.args.share_layer)
+        self.clip_model, self.preprocess = clip.load(config['clip_model'], device=self.device, jit=False)
         self.embed_dim = self.clip_model.embed_dim
         
         self.clip_model.freeze_original_weights()
